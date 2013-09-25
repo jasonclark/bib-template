@@ -1,0 +1,49 @@
+<?php
+//declare content type before any text is sent to browser
+header('Content-type: text/xml');
+//make XML declaration
+echo ("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+        <loc><?php echo 'http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']); ?>/index.html</loc>
+        <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+</url>
+<url>
+        <loc><?php echo 'http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']); ?>/article-preface.html</loc>
+        <lastmod><?php echo date('Y-m-d'); ?></lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+</url>
+<?php
+//pass database parameters
+include_once './meta/assets/connect-db.inc';
+
+//retrieve items from database
+//note: with current data model only need to query 1 table for id and data modfied value
+/*$query = "SELECT book.id, book.dateModified
+		FROM bib_schema.book
+		UNION 
+		SELECT recipe.id, recipe.dateModified
+		FROM bib_schema.recipe";*/
+$query = "SELECT recipe.id, recipe.dateModified FROM bib_schema.recipe";
+$getItems = @mysql_query($query);
+
+//store items in array, strip out html tags, generate valid date stamp
+while($item=mysql_fetch_array($getItems)) {
+	$id = $item['id'];
+	$modified = $item['dateModified'];
+	//output to client     
+?>
+<url>
+        <loc><?php echo 'http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']); ?>/item-<?php echo $id; ?>.html</loc>
+        <lastmod><?php echo $modified; ?></lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+</url>
+<?php 
+} 
+?>
+</urlset>
