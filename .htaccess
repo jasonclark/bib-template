@@ -1,0 +1,3 @@
+#redirect 301 /cookbook/index.html http://shelf.lib.montana.edu/cookbook/toc.html
+#process .html as .php
+AddType application/x-httpd-php .html 

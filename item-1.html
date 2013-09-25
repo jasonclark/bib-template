@@ -1,0 +1,118 @@
+<?php
+//awful routine to parse id value from filename because treesaver.js will not allow query strings
+$file = basename($_SERVER['PHP_SELF']);
+$filename = explode('.', $file);
+$getId = explode('-', $filename[0]);
+$id = $getId[1];
+$id = isset($id) ? strip_tags((int)$id) : null;
+
+//bring database parameters and functions onto page
+include_once './meta/assets/connect-db.inc';
+
+//get data to generate recipe data
+$query = 'SELECT * FROM bib_schema.recipe WHERE id ='.$id;
+//echo $query;
+$result = mysql_query($query) or die('Errant query:  '.$query);
+if(mysql_num_rows($result)) {
+	while($item = mysql_fetch_object($result)) {
+		$recipe_id = $item->id;
+		$recipe_name = $item->name;
+		$recipe_creator = $item->creator;
+		$recipe_ingredients = $item->ingredients;
+		$recipe_instructions = $item->recipeInstructions;
+		$recipe_image = $item->image;
+		$recipe_method = $item->cookingMethod;
+		$recipe_cooktime = $item->cookTime;
+		$recipe_category = $item->recipeCategory;
+		$recipe_cuisine = $item->recipeCuisine;
+		$recipe_yield = $item->recipeYield;
+		$recipe_sameAs = $item->sameAs;	
+?>
+<!doctype html>
+<html class="no-js no-treesaver">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+<title><?php echo $recipe_name.' - '.$recipe_creator; ?></title>
+<link rel="stylesheet" href="style.css">
+<link rel="resources" href="resources.html">
+<script src="create-html5-elements.js"></script>
+<script src="treesaver-0.9.2.js"></script>
+</head>
+<body vocab="http://schema.org/" typeof="WebPage">
+<meta property="name" content="<?php echo $recipe_name; ?>" />
+<meta property="creator" content="<?php echo $recipe_creator; ?>" />
+<article>
+<script type="application/ld+json">
+{
+	"@context":"http://schema.org",
+	"@type":"Recipe",
+	"name":"<?php echo $recipe_name; ?>",
+	"image":"<?php echo $recipe_image; ?>",
+	"ingredients":"<?php echo $recipe_ingredients; ?>",
+	"recipeInstructions":"<?php echo $recipe_instructions; ?>",
+	"cookTime":"<?php echo $recipe_cooktime; ?>",
+	"recipeCategory":"<?php echo $recipe_image; ?>",
+	"recipeCuisine":"<?php echo $recipe_cuisine; ?>",
+	"recipeYield":"<?php echo $recipe_yield; ?>",
+	"sameAs":"<?php echo $recipe_sameAs; ?>"
+}
+</script>
+<span vocab="http://schema.org/" typeof="Recipe">
+<figure>
+	<h2 data-sizes="title fallback">
+		<span class="chapter"><a id="toc" href="toc.html">Table of Contents</a> > Recipe and Essay</span>
+		<span property="name"><?php echo $recipe_name; ?></span>
+	</h2>
+</figure>
+<p>Cooking Time: <span property="cookTime"><?php echo $recipe_cooktime; ?></span></p>
+<p>Cooking Method: <span property="cookingMethod"><?php echo $recipe_method; ?></span></p>
+<p>Category: <span property="recipeCategory"><?php echo $recipe_category; ?></span></p>
+<p>Cuisine Type: <span property="recipeCuisine"><?php echo $recipe_cuisine; ?></span></p>
+<p>Servings: <span property="recipeYield"><?php echo $recipe_yield; ?></span></p>
+<p>Related: <a property="sameAs" href="<?php echo $recipe_sameAs; ?>">dbPedia entity</a></p>
+<p>Ingredients:</p>
+<ul>
+	<li><span property="ingredients"><?php echo $recipe_ingredients; ?></span></li>
+</ul>
+<p>Directions:</p>
+<ul>
+	<li><span property="recipeInstructions"><?php echo $recipe_instructions; ?></span></li>
+</ul>
+
+<figure>
+<img data-sizes="double" property="image" src="<?php echo $recipe_image; ?>" width="480" height="360" alt="Jonathan Bergh">
+</figure>
+<?php
+	}
+}
+?>
+</span><!-- end recipe RDFa lite markup -->	  
+<h2 data-sizes="title fallback" class="columnbreak">
+<span vocab="http://schema.org/" typeof="Book">
+<?php
+//get data to generate essay data		
+$query = 'SELECT * FROM bib_schema.book WHERE id = '.$id;
+$result = mysql_query($query) or die('Errant query:  '.$query);
+if(mysql_num_rows($result)) {
+	while($item = mysql_fetch_object($result)) {
+		$essay_name = $item->name;
+		$essay_creator = $item->creator;
+		$essay_body = $item->articleBody;
+		$essay_type = $item->publicationType;	
+?>
+<meta property="publicationType" content="<?php echo $essay_type; ?>" />
+<span class="chapter"><a id="toc" href="toc.html">Table of Contents</a> > Recipe and Essay</span> 
+<span property="name"><?php echo $essay_name; ?></span> <span class="byline">by <span property="creator"><?php echo $essay_creator; ?></span></span>
+</h2>
+<span property="articleBody">
+<?php echo $essay_body; ?>
+</span> 
+<?php
+	}
+}
+?>
+</span><!-- end book RDFa lite markup -->	
+</article>
+</body>
+</html>
