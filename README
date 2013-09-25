@@ -1,0 +1,10 @@
+This project is related to research about creating a book in the browser first presented at Access 2013 in St. John's, NL. 
+
+These files are for use with the [Treesaver Walkthrough](https://github.com/Treesaver/treesaver/wiki/Walkthrough). The files in this repo provide a skeleton "proof of concept" app for learning purposes. Youn can find the data model (MySQL sample DB) for the app in the /meta/assets/ directory.
+
+Contact me if you have questions or are interested in developing the project.
+
+Jason A. Clark
+Head of Digital Access and Web Services
+Montana State University Library
+www.jasonclark.info
