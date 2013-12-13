@@ -188,7 +188,7 @@ a {color: #ce1b1b;text-decoration:none;}
 a:hover {color:#000;border-bottom:1px solid #f00;}	
 .byline {font-size:16px;line-height:24px;display:block;white-space:pre;}
 a.expand {text-align:right;margin:0;padding:3px 3px 3px 17px;background:url("img/expand.gif") no-repeat center left;}
-.toc {list-style:none;margin-bottom:20px;width:600px;}
+.toc {list-style:none;margin-bottom:20px;width:70%;}
 .toc li {background: url("img/dot.gif") repeat-x bottom left;overflow:hidden;padding-bottom: 2px;}
 .toc span a, .toc span {display:inline-block;background: #fff;position: relative;bottom: -4px;}
 span.title {float:left;width:auto;padding:0 0 3px 2px;}

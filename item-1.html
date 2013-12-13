@@ -96,9 +96,9 @@ if(mysql_num_rows($result)) {
 	}
 }
 ?>
-</section><!-- end recipe RDFa lite markup -->	  
+</section><!-- end recipe RDFa lite markup -->
+<section vocab="http://schema.org/" typeof="Book">  
 <h2 data-sizes="title fallback" class="columnbreak">
-<section vocab="http://schema.org/" typeof="Book">
 <?php
 //get data to generate essay data		
 $query = 'SELECT * FROM bib_schema.book WHERE id = '.$id;
