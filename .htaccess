@@ -2,3 +2,8 @@
 #process .html and .xml as .php
 AddType application/x-httpd-php .html 
 AddType application/x-httpd-php .xml
+RewriteEngine On
+#allows removal of html file extension
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteBase /book/home-cooking-history-409/
+RewriteRule ^(.*)$ $1.html [L]
