@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js no-treesaver">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1">
+    <title>Table of Contents, Home Cooking, a cookbook and series of essays - Montana State University</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="resources" href="resources.html">
+        <script src="create-html5-elements.js"></script>
+    <script src="treesaver-0.9.2.js"></script>
+</head>
+<body>
+<figure>
+<h1 data-sizes="title fallback">
+    <a href="index.html" itemprop="url">Home Cooking, a cookbook and series of essays - Montana State University</a>
+</h1>
+</figure>
+<ul class="toc">
+<li>
+  <span class="title" itemprop="title"><a href="./book-preface.html" itemprop="url">Preface</a></span>
+  <span class="byline" itemprop="byline">by Mary Murphy</span>
+</li>
+<?php
+//bring database parameters and functions onto page
+include_once './meta/assets/dbconnect.inc';
+
+//get data to generate TOC
+$query = 'SELECT * FROM bib_schema.recipe ORDER BY creator ASC';
+$result = mysql_query($query) or die('Errant query:  '.$query);
+if(mysql_num_rows($result)) {
+	$item = mysql_fetch_object($result);
+		$item_id = $item->id;
+		$item_name = $item->name;
+		$item_creator = $item->creator;
+?>
+<li>
+  <span class="title" itemprop="title"><a href="./item-<?php echo $item_id; ?>.html" itemprop="url"><?php echo $item_name; ?></a></span>
+  <span class="byline" itemprop="byline">by <?php echo $item_creator; ?></span>
+</li>
+</ul><!-- end ul.toc -->
+</body>
+</html>
