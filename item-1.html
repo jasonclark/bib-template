@@ -62,8 +62,8 @@ if(mysql_num_rows($getArticle)) {
 <!--<script type="text/javascript">
 
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'ADD-YOUR-GOOGLE-ANALYTICS-ID-HERE']);
-_gaq.push(['_setDomainName', 'ADD-YOUR-DOMAIN-HERE']);
+_gaq.push(['_setAccount', 'UA-2733436-2']);
+_gaq.push(['_setDomainName', 'lib.montana.edu']);
 _gaq.push(['_trackPageview']);
 _gaq.push(['_gat._anonymizeIp']);
 
@@ -76,62 +76,62 @@ _gaq.push(['_gat._anonymizeIp']);
 </script>-->
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "Book",
-  "name" : "Home Cooking, a cookbook and series of essays - Montana State University",
-  "description" : "Home Cooking is the product of a class project undertaken by the students in Montana State University's upper division history course, The History of Food in America (HSTA 409), in Spring 2012. The stories and recipes collected here represent a wide range of family memories and of regional and international cuisines.",
-  "image" : "http://arc.lib.montana.edu/book/home-cooking-history-409/img/samantha-rauser-2.JPG",
-  "author" : {
-    "@type" : "Person",
-    "name" : "Students in Montana State University's upper division history course, The History of Food in America (HSTA 409), in Spring 2012"
-  },
-  "Recipe" : {
-   "@type" : "Recipe",
-   "name" : "<?php echo $recipe_name; ?>",
-   "author" : {
-    "@type" : "Person",
-    "name" : "<?php echo $recipe_creator; ?>"
-   },
-   "publisher" : {
-     "@type" : "Organization",
-     "name" : "<?php echo $recipe_publisher; ?>"
-   },
-   "datePublished" : "<?php echo $recipe_datePublished; ?>",
-   "image" : "<?php echo addslashes($recipe_image); ?>",
-   "ingredients" : "<?php echo $recipe_ingredients; ?>",
-   "recipeInstructions" : "<?php echo urlencode($recipe_instructions); ?>",
-   "cookTime" : "<?php echo $recipe_cooktime; ?>",
-   "recipeCategory" : "<?php echo $recipe_category; ?>",
-   "recipeCuisine" : "<?php echo $recipe_cuisine; ?>",
-   "recipeYield" : "<?php echo $recipe_yield; ?>",
-   "sameAs" : "<?php echo htmlspecialchars($recipe_sameAs); ?>"
-  },
-  "Article" : {
-   "@type" : "Article",
-   "name" : "<?php echo $essay_name; ?>",
-   "author" : {
-    "@type" : "Person",
-    "name" : "<?php echo $essay_creator; ?>"
-   },
-   "image" : "<?php echo addslashes($essay_image); ?>",
-   "articleBody" : "<?php echo urlencode($essay_body); ?>",
-   "url" : "<?php echo 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/item-'.$id.'.html'; ?>",
-   "datePublished" : "<?php echo $essay_datePublished; ?>",
-   "publisher" : {
-     "@type" : "Organization",
-     "name" : "<?php echo $essay_publisher; ?>"
-   },  
-  "datePublished" : "2012-05-01",
-  "genre" : "<?php echo $essay_type; ?>",
-  "publisher" : {
-   "@type" : "Organization",
-   "name" : "<?php echo $essay_publisher; ?>"
-  },
-  "inLanguage" : "<?php echo $essay_language; ?>",
-  "genre" : "http://id.loc.gov/authorities/genreForms/gf2011026169.html",
-  "bookFormat" : "<?php echo $essay_format; ?>",
-  "url" : "<?php echo 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'; ?>"
-  }
+	"@context" : "http://schema.org",
+	"@type": "Book",
+	"name": "Home Cooking, a cookbook and series of essays - Montana State University",
+	"description": "Home Cooking is the product of a class project undertaken by the students in Montana State University's upper division history course, The History of Food in America (HSTA 409), in Spring 2012. The stories and recipes collected here represent a wide range of family memories and of regional and international cuisines.",
+	"image": "http://arc.lib.montana.edu/book/home-cooking-history-409/img/samantha-rauser-2.JPG",
+	"datePublished": "2012-05-01",
+	"inLanguage" : "<?php echo $essay_language; ?>",
+	"genre" : "http://id.loc.gov/authorities/genreForms/gf2011026169.html",
+	"bookFormat" : "<?php echo $essay_format; ?>",
+	"author": {
+		"@type": "Person",
+		"name": "Students in Montana State University's upper division history course, The History of Food in America (HSTA 409), in Spring 2012"
+	},
+	"Recipe": {
+		"@type": "Recipe",
+		"name": "<?php echo $recipe_name; ?>",
+		"author": {
+		"@type": "Person",
+			"name": "<?php echo $recipe_creator; ?>"
+		},
+		"publisher": {
+		"@type": "Organization",
+			"name": "<?php echo $recipe_publisher; ?>"
+		},
+		"datePublished": "<?php echo $recipe_datePublished; ?>",
+		"image": "<?php echo addslashes($recipe_image); ?>",
+		"ingredients": "<?php echo $recipe_ingredients; ?>",
+		"recipeInstructions": "<?php echo urlencode($recipe_instructions); ?>",
+		"cookTime": "<?php echo $recipe_cooktime; ?>",
+		"recipeCategory": "<?php echo $recipe_category; ?>",
+		"recipeCuisine": "<?php echo $recipe_cuisine; ?>",
+		"recipeYield": "<?php echo $recipe_yield; ?>",
+		"sameAs": "<?php echo htmlspecialchars($recipe_sameAs); ?>"
+	},
+	"Article": {
+		"@type": "Article",
+		"name": "<?php echo $essay_name; ?>",
+		"author": {
+			"@type": "Person",
+			"name": "<?php echo $essay_creator; ?>"
+		},
+		"image": "<?php echo addslashes($essay_image); ?>",
+		"articleBody": "<?php echo urlencode($essay_body); ?>",
+		"url": "<?php echo 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/item-'.$id.'.html'; ?>",
+		"datePublished": "<?php echo $essay_datePublished; ?>",
+		"publisher": {
+			"@type": "Organization",
+			"name": "<?php echo $essay_publisher; ?>"
+		},
+		"genre": "<?php echo $essay_type; ?>"
+	},
+	"publisher": {
+	"@type": "Organization",
+		"name" : "<?php echo $essay_publisher; ?>"
+	},
+	"url" : "<?php echo 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/'; ?>"
 }
 </script>
 </head>
